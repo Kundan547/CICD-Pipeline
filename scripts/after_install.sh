@@ -1,12 +1,16 @@
 #!/bin/bash
 
-#_Change_Working_Directory
+# Change working directory
 cd /home/ec2-user/server
 
-#_Remove_Unused_Code
+# Remove unused code
 rm -rf node_modules
 rm -rf build
 
-#Install_node_modules_&_Make_React_Build
-npm  install
-npm run build
+# Install node modules
+npm install || { echo "Failed to install dependencies"; exit 1; }
+
+# Create React build
+npm run build || { echo "Failed to create React build"; exit 1; }
+
+echo "Build completed successfully"
